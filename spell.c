@@ -137,22 +137,27 @@ bool check_word(const char* word, hashmap_t hashtable[]){
 		}
 	}
 
-	char *check_word = word;
-	check_word[0] = tolower(check_word[0]);
-	check_word[strlen(check_word)-1] = tolower(check_word[strlen(check_word)-1]);
+	char *check_word = malloc(sizeof(char)*1024);
+	strcpy(check_word, word);
+	for(int ind=0; ind < strlen(check_word); ind ++){
+		check_word[ind] = tolower(check_word[ind]);
+	}
+	
 	bucket = hash_function(check_word);
 	if(bucket < 0){
+		free(check_word);
 		return false;
 	}
 	cursor = hashtable[bucket];
 	while(cursor){
 		if(strcmp(check_word, cursor->word)==0){
+			free(check_word);
 			return true;
 		} else{
 			cursor = cursor->next;
 		}
 	}
-	
+	free(check_word);
 	return false;
 }
 
