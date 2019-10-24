@@ -24,20 +24,30 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 				word[strlen(word)-1] = '\0';
 			}
 			
+			
 
 			if(strlen(word) < LENGTH+1){
-
+				//Handle Blank "Word" case.
 	  			if(check_word(word, hashtable) == false && strcmp(word, "") !=0){
+					bool number = false; 
+					int counter =0;
+					for(int j=0; j < strlen(word); j++){
+						if(word[j] >= '0' && word[j] <= '9'){
+							counter++;
+						}
+					}
+					if(counter == strlen(word)){
+						number = true;
+					}
+					if(number == false){		
+						char *new_word = NULL;
+						new_word = malloc(LENGTH+1);
 
-					char *new_word = NULL;
-					new_word = malloc(LENGTH+1);
-
-					strcpy(new_word, word);
-	  				misspelled[num_misspelled] = new_word;
-	  				num_misspelled++;
-	  			} else{
-					
-				}
+						strcpy(new_word, word);
+		  				misspelled[num_misspelled] = new_word;
+		  				num_misspelled++;
+					}
+	  			} 
 		  		
 			}
 			word = strtok(NULL, " ");

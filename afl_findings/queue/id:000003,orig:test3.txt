@@ -1,5 +1,0 @@
-bad
-constant
-three
-constant
-klex

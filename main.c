@@ -24,16 +24,19 @@ int main(int argc, char *argv[]){
 		printf("%s\n", misspelled[i]);
 		free(misspelled[i]);
 	}
+	
 	for(int j=0; j<HASH_SIZE; j++){
 		while(hashtable[j]){
+			hashmap_t next = hashtable[j]->next;
 			
-			hashmap_t next =hashtable[j]->next;
 			hashmap_t prev = hashtable[j];
-		
+			
 			free(prev->word);
 			hashtable[j] = next;
+			
 		}
 	}
+	
 	fclose(fp);
 	return 0;
 }
