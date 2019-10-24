@@ -83,7 +83,7 @@ bool load_dictionary(const char* dictionary_file, hashmap_t hashtable[]){
 			strcpy(new_node->word, line);
 			int bucket = hash_function(new_node->word);
 			//AFL generated input triggered a condition where the bucket number was negative adding additional checks
-			if(bucket >= 0 AND bucket <= HASH_LENGTH){
+			if(bucket >= 0 && bucket < HASH_SIZE){
 				if(hashtable[bucket] == NULL){
 
 					hashtable[bucket] = new_node;
