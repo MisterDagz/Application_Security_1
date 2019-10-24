@@ -20,7 +20,7 @@ int check_words(FILE* fp, hashmap_t hashtable[], char* misspelled[]){
 				word[strlen(word)-1] = '\0';
 			}
 			
-			if(word[strlen(word)-1] == '.' || word[strlen(word)-1] == '!' || word[strlen(word)-1] == '?' || word[strlen(word)-1] == ',' || word[strlen(word)-1] == ';'){
+			if(word[strlen(word)-1] == '.' || word[strlen(word)-1] == '!' || word[strlen(word)-1] == '?' || word[strlen(word)-1] == ',' || word[strlen(word)-1] == ';'  || word[strlen(word)-1] == ':'){
 				word[strlen(word)-1] = '\0';
 			}
 			
